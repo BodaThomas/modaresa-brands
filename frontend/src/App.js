@@ -27,13 +27,34 @@ class App extends React.Component {
         console.log('create brand')
     }
 
+    handleDeleteBrand(element) {
+        console.log('delete', {...element})
+        API.delete('/deleteBrand?name='+ element.name)
+            .then(json => console.log(json.data))
+            .catch(error => console.log(error.response))
+    }
+
     render() {
         const brandList = this.state.brandList
         let brands = null
 
+        console.log(brandList)
         if (Array.isArray(brandList) && brandList.length) {
             brands = <div>
-
+                {
+                    brandList.map((element, i) => {
+                        return (
+                            <div key={i}>
+                                {element.name}
+                                {element.type}
+                                {element.country}
+                                {element.description}
+                                {element.createdAt}
+                                <button onClick={() => this.handleDeleteBrand(element)}>Delete</button>
+                            </div>
+                        )
+                    })
+                }
             </div>
         } else {
             brands = <div>

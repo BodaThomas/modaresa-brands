@@ -17,7 +17,8 @@ exports.addBrand = (req, res) => {
     }
     newBrand.name = req.body.name
     newBrand.type = req.body.type
-    newBrand.country = req.body.country
+    newBrand.country = req.body.country,
+    newBrand.createdAt = new Date()
     if (req.body.description)
         newBrand.description = req.body.description
     brandsList.push(newBrand)
@@ -36,7 +37,25 @@ exports.getBrands = (_, res) => {
 }
 
 exports.deleteBrand = (req, res) => {
-    console.log(req, res)
+    let index
+
+    if (!req.query.name) {
+        res.status(400).json({
+            message: 'Bad request. You need to provide a brand name in the query.'
+        })
+        return
+    }
+    index = brandsList.find(element => element.name === req.query.name)
+    if (index === -1) {
+        res.status(400).json({
+            message: 'You try to delete an non-existent brand.'
+        })
+        return
+    }
+    brandsList.splice(index, 1)
+    res.status(200).json({
+        message: 'Brand successfully deleted.'
+    })
     return
 }
 
