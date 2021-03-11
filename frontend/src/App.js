@@ -10,9 +10,10 @@ class App extends React.Component {
         this.state = {
             brandList: null
         }
+        this.refreshBrandList.bind(this)
     }
 
-    componentDidMount() {
+    refreshBrandList() {
         API.get('/getBrands')
             .then(json => json.data)
             .then(data => {
@@ -23,6 +24,10 @@ class App extends React.Component {
             })
     }
 
+    componentDidMount() {
+        this.refreshBrandList()
+    }
+
     handleCreateBrand() {
         console.log('create brand')
     }
@@ -30,7 +35,10 @@ class App extends React.Component {
     handleDeleteBrand(element) {
         console.log('delete', {...element})
         API.delete('/deleteBrand?name='+ element.name)
-            .then(json => console.log(json.data))
+            .then(json => {
+                console.log(json.data)
+                this.refreshBrandList()
+            })
             .catch(error => console.log(error.response))
     }
 
@@ -50,7 +58,9 @@ class App extends React.Component {
                                 {element.country}
                                 {element.description}
                                 {element.createdAt}
-                                <button onClick={() => this.handleDeleteBrand(element)}>Delete</button>
+                                <button className="p-4 bg-red-500" onClick={() => {
+                                    this.handleDeleteBrand(element)
+                                }}>DELETE</button>
                             </div>
                         )
                     })
@@ -60,7 +70,7 @@ class App extends React.Component {
             brands = <div>
                 <b>You don't have any brand in your list.</b>
                 <div>
-                    <button onClick={this.handleCreateBrand}>Add a brand</button>
+                    <button className="p-2 text-blue-400 border border-blue-400 rounded-md hover:bg-blue-400 hover:text-white focus:outline-none" onClick={this.handleCreateBrand}>ADD A BRAND</button>
                 </div>
             </div>
         }
@@ -69,7 +79,7 @@ class App extends React.Component {
             <div className="App">
                 <h1>ModaResa Brands</h1>
                 {brands}
-                <BrandCreator/>
+                <BrandCreator refreshFunction={this.refreshBrandList.bind(this)}/>
             </div>
         )
     }

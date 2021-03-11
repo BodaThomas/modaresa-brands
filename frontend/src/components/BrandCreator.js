@@ -24,6 +24,7 @@ class BrandCreator extends React.Component {
             description: this.state.desc
         }).then(json => {
             console.log(json.data)
+            this.props.refreshFunction()
         })
     }
 
