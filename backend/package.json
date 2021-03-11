@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/MrToto54/modaresa-brands/issues"
   },
-  "homepage": "https://github.com/MrToto54/modaresa-brands#readme"
+  "homepage": "https://github.com/MrToto54/modaresa-brands#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
