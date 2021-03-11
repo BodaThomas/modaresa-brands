@@ -37,25 +37,19 @@ class BrandCreator extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="text-center">
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <div>
+                    <div className="grid grid-cols-2 gap-2 text-center">
                         <label htmlFor="name">Name:</label>
-                        <input id="name" onChange={this.handleInputChange.bind(this)}/>
-                    </div>
-                    <div>
+                        <input id="name" onChange={this.handleInputChange.bind(this)} className="border rounded-md pr-2 pl-2"/>
                         <label htmlFor="type">Type:</label>
-                        <input id="type" onChange={this.handleInputChange.bind(this)}/>
-                    </div>
-                    <div>
+                        <input id="type" onChange={this.handleInputChange.bind(this)} className="border rounded-md pr-2 pl-2"/>
                         <label htmlFor="country">Country:</label>
-                        <input id="country" onChange={this.handleInputChange.bind(this)}/>
-                    </div>
-                    <div>
+                        <input id="country" onChange={this.handleInputChange.bind(this)} className="border rounded-md pr-2 pl-2"/>
                         <label htmlFor="desc">Description:</label>
-                        <input id="desc" onChange={this.handleInputChange.bind(this)}/>
+                        <input id="desc" onChange={this.handleInputChange.bind(this)} className="border rounded-md pr-2 pl-2"/>
                     </div>
-                    <button type="submit">
+                    <button type="submit" className="m-4 p-2 text-green-400 border border-green-400 rounded-md hover:bg-green-400 hover:text-white focus:outline-none">
                         Create the brand
                     </button>
                 </form>
