@@ -9,7 +9,7 @@ const brand = {
 exports.addBrand = (req, res) => {
     const newBrand = Object.create(brand)
 
-    if (!req.body.name || !req.body.createdAt || !req.body.country) {
+    if (!req.body || !req.body.name || !req.body.type || !req.body.country) {
         res.status(400).json({
             message: 'Bad request. Some parameters are missing.'
         })
@@ -20,7 +20,7 @@ exports.addBrand = (req, res) => {
     newBrand.country = req.body.country
     if (req.body.description)
         newBrand.description = req.body.description
-
+    brandsList.push(newBrand)
     console.log(newBrand)
     res.status(200).json({
         success: true
