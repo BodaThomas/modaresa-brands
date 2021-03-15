@@ -59,3 +59,11 @@ exports.deleteBrand = (req, res) => {
     return
 }
 
+exports.getTypes = (_, res) => {
+    const types = ['shoes', 'clothes', 'bags', 'hats', 'accessories']
+
+    res.status(200).json({
+        types
+    })
+    return
+}
