@@ -73,11 +73,28 @@ class App extends React.Component {
 
         console.log(brandList)
         if (Array.isArray(brandList) && brandList.length) {
-            brands = <div>
+            brands = <div className="grid grid-rows border">
+                <div className="grid grid-cols grid-cols-6 border align-middle font-bold">
+                    <div className="m-auto">
+                        Name
+                    </div>
+                    <div className="m-auto">
+                        Type
+                    </div>
+                    <div className="m-auto">
+                        Country
+                    </div>
+                    <div className="m-auto">
+                        Description
+                    </div>
+                    <div className="m-auto">
+                        Created At
+                    </div>
+                </div>
                 {
                     brandList.map((element, i) => {
                         return (
-                            <div key={i} className="grid grid-cols grid-cols-6 border m-10 align-middle">
+                            <div key={i} className="grid grid-cols grid-cols-6 border align-middle">
                                 <div className="m-auto">
                                     {element.name}
                                 </div>
