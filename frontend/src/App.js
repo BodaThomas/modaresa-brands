@@ -64,9 +64,10 @@ class App extends React.Component {
                 padding: '20px',
                 outline: 'none',
                 overflow: 'auto',
-                top: '70%',
+                top: '50%',
                 left: '50%',
-                transform: 'translate(-50%, -130%)'
+                transform: 'translate(-50%, -50%)',
+                display: 'flex'
             }
         }
 
